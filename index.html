@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>С Днём Рождения!</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #fff9fb;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    header h1 { color: #ff85a2; font-size: 2rem; }
+
+    .card {
+      padding: 20px;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      border: 1px solid #ffeef2;
+    }
+
+    /* КНОПКА-ТОРТ */
+    .cake-btn {
+      background: none;
+      border: none;
+      font-size: 100px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+      transition: transform 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      user-select: none;
+      will-change: transform;
+    }
+
+    .cake-btn:active { transform: scale(0.9) rotate(5deg); }
+
+    /* ФЕЙЕРВЕРК */
+    #fireworkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      display: none; /* Скрыт пока не нажали */
+    }
+
+    footer { color: #ccc; font-size: 0.8rem; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header><h1>Любимой Амельке ❤️</h1></header>
+
+    <div class="card">
+      <p>С днём рождения! Подарки в ТГ — это скучно, поэтому держи кое-что поинтереснее...</p>
+    </div>
+
+    <button class="cake-btn" id="cake" type="button">🎂</button>
+
+    <div class="card">
+      <p>Нажми на тортик!</p>
+    </div>
+
+    <footer>© 2026 Для Амельки</footer>
+  </div>
+
+  <canvas id="fireworkCanvas"></canvas>
+
+  <script>
+    const cake = document.getElementById('cake');
+    const canvas = document.getElementById('fireworkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let particles = [];
+    let animationId;
+
+    function createFirework() {
+      const colors = ['#ff85a2', '#ffb74d', '#4fc3f7', '#81c784', '#e040fb'];
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.5) * 10,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.01;
+        
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (p.alpha <= 0) particles.splice(i, 1);
+      });
+
+      if (particles.length > 0) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        window.location.href = 'page2.html';
+      }
+    }
+
+    function start(e) {
+      e.preventDefault();
+      canvas.style.display = 'block';
+      if (particles.length === 0) {
+        createFirework();
+        animate();
+      }
+    }
+
+    // Обработка и клика и тапа для iPhone
+    cake.addEventListener('touchstart', start, {passive: false});
+    cake.addEventListener('click', start);
+  </script>
+</body>
+</html>
