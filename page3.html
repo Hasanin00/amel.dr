@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Упсс...</title>
+  <style>
+    body {
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #fff9fb;
+      color: #4a4a4a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* КРУПНЫЙ ЗАГОЛОВОК */
+    .ups-title {
+      color: #ff85a2;
+      font-size: clamp(3rem, 15vw, 4.5rem);
+      font-weight: 900;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .sub-title {
+      font-size: 1.2rem;
+      color: #888;
+      margin-top: 10px;
+    }
+
+    /* ЦИФРЫ 1402 */
+    .numbers {
+      font-size: clamp(4rem, 20vw, 6rem);
+      font-weight: 900;
+      color: #4fc3f7; /* Голубой акцент, чтобы выделялось */
+      margin: 20px 0;
+      letter-spacing: 5px;
+      text-shadow: 4px 4px 0px rgba(79, 195, 247, 0.1);
+    }
+
+    /* ПРЯМОУГОЛЬНИК ДЛЯ ТЕКСТА */
+    .text-box {
+      background: white;
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 2px dashed #ff85a2; /* Пунктирная рамка для стиля */
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .text-box p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .final-btn {
+      background: #4a4a4a; /* Темная кнопка для контраста */
+      color: white;
+      border: none;
+      padding: 15px 45px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .final-btn:active {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="ups-title">УПСС...</h1>
+    <p class="sub-title">К сожалению, не успел...</p>
+
+    <div class="numbers">1402</div>
+
+    <div class="text-box">
+      <!-- ТВОЙ ТЕКСТ ТУТ -->
+      <p>Короче мне пришлось для этого сайтика отбросить часть проектов но ядоделал его только что)) Скажу было в планах многое но жди продолжение следует. Твой hasanin</p>
+    </div>
+
+
+  </div>
+
+</body>
+</html>
